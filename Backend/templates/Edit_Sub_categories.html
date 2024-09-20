@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Sub-Categories</title>
+</head>
+<body>
+<div class="col-10 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Add Sub-Categories</h4>
+                  <p class="card-description">
+
+                  </p>
+                  <form class="forms-sample" method="post" action="{% url 'update_sub_categories' sub_id=s_data.id %}" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-group">
+                      <label for="exampleSelectGender">Select Category </label>
+                        <select class="form-control"  name="edit_select_cat" id="exampleSelectGender">
+                          <option>{{s_data.Category_St}}</option>
+                          {% for i in c_data %}
+                          <option>{{i.Category_Name}}</option>
+                          {% endfor %}
+                        </select>
+                      </div>
+                    <div class="form-group">
+                      <label for="exampleInputName1">Sub-Category Name</label>
+                      <input type="text" name="edit_sub_cat_name" class="form-control" id="exampleInputName1" value="{{s_data.Sub_Category_Name}}">
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleTextarea1">Sub-Categories Description</label>
+                      <textarea class="form-control" name="edit_sub_cat_descript" id="exampleTextarea1" rows="6">{{s_data.Sub_Category_Description}}</textarea>
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputCity1">Sub-Categories Image </label><br>
+                      <img src="{{s_data.Sub_Category_Image.url}}" width="100px" height="100px"><br><br>
+                      <input type="file" name="edit_sub_cat_img" class="form-control" id="">
+                    </div>
+                    <button type="submit" class="btn btn-primary mr-2">Update</button>
+                    <button class="btn btn-light">Cancel</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+</body>
+</html>
+{% endblock %}

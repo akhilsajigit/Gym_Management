@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hii</title>
+
+</head>
+<body>
+
+<div class="OuterDiv" >
+    <div class="InnerDiv" >
+        <h2>Add Daily-Workout Category </h2>
+        <a href="{% url 'add_daily_workout_cat' %}">
+            <button class="btn btn-primary" >Add</button>
+        </a>
+    </div>
+    <div class="InnerDiv" >
+        <h2>View Daily-Workout Category </h2>
+        <a href="{% url 'view_daily_cat' %}">
+            <button class="btn btn-primary" >View</button>
+        </a>
+    </div>
+    <div class="InnerDiv" >
+        <h2>Add Day Category </h2>
+        <a href="{% url 'add_day_category' %}">
+            <button class="btn btn-primary" >Add</button>
+        </a>
+    </div>
+    <div class="InnerDiv" >
+        <h2>View Day Category </h2>
+        <a href="{% url 'view_day_category' %}">
+            <button class="btn btn-primary" >View</button>
+        </a>
+    </div>
+    <div class="InnerDiv" >
+        <h2>Add Daily-Set Workouts </h2>
+        <a href="{% url 'add_daily_workouts' %}">
+            <button class="btn btn-primary" >Add</button>
+        </a>
+    </div>
+    <div class="InnerDiv" >
+        <h2>View Daily-Set Workouts </h2>
+        <a href="{% url 'view_daily_workouts' %}">
+            <button class="btn btn-primary" >View</button>
+        </a>
+
+    </div>
+</div>
+</body>
+<style>
+    .OuterDiv{
+    width:100%;
+    height:790px;
+    margin-top:50px;
+    }
+    .InnerDiv{
+    font-family: Garamond, serif;
+    width:1000px;
+    height:85px;
+    background-color:white;
+    margin-left:100px;
+    margin-top:10px;
+    border-radius:85px;
+    padding-top:12px;
+    padding-left:100px;
+    border:inset
+    }
+    button{
+    margin-left:700px;
+    margin-top:-70px;
+    }
+</style>
+</html>
+{% endblock %}

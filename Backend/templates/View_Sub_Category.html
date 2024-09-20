@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>View categories</title>
+</head>
+<body>
+<div class="col-lg-10 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Sub-Category View</h4>
+                  <p class="card-description">
+                    >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+                  </p>
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>id</th>
+                          <th>Category Name</th>
+                          <th>Sub-Category Name</th>
+                          <th>Sub-Description</th>
+                          <th>Image</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      {% for i in data %}
+                        <tr>
+                          <td>{{i.id}}</td>
+                          <td>{{i.Category_St}}</td>
+                          <td>{{i.Sub_Category_Name}}</td>
+                          <td>{{i.Sub_Category_Description}}</td>
+                          <td>
+                            <img src="{{i.Sub_Category_Image.url}}" >
+                          </td>
+                          <td>
+                            <a href="{% url 'edit_sub_categories' sub_id=i.id %}">
+                              <button class="btn btn-primary" >Edit</button>
+                            </a>
+                          </td>
+                          <td>
+                            <a href="{% url 'delete_sub_category_data' sub_id=i.id %}">
+                              <button class="btn btn-danger">Delete</button>
+                            </a>
+                          </td>
+                        </tr>
+                      {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+</body>
+</html>
+{% endblock %}

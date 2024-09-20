@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Payment Page</title>
+</head>
+<body>
+<a href="{% url 'Home' %}" >
+    <button class="btn btn-primary">Home</button>
+</a>
+<form action="#" method="post">
+    {% csrf_token %}
+    <div class="outer-div">
+    <h4>Proceed to Payment</h4>
+    <h5>Payer : {{request.session.Username}}</h5>
+    <img src="{% static 'Gym_Payment/cash_payment_icon.jpg' %}" width="100px;" height="100px;">
+    <br><br>
+    <button class="btn-class" type="submit">Make Payment</button>
+</div>
+</form>
+</body>
+<style>
+    body{
+    background-image:url({%static 'Gym_Payment/payment_background.jpg' %})
+    }
+    .outer-div{
+    width:500px;
+    height:400px;
+    border-radius:15px;
+    background-color:#f0f2f2;
+    text-align:center;
+    margin-top:250px;
+    margin-left:750px;
+    font-size:30px;
+    font-weight: 900;
+    font-family: cursive;
+    box-shadow: 0 0 4px 4px rgb(92, 91, 91);
+    }
+    .btn-class {
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 4px 8px;
+    background-color: #a30217;
+    color: white;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    }
+</style>
+<script src="https://checkout.razorpay.com/v1/checkout.js"
+data-key="rzp_test_PMmGnroCxOlaJ0"
+    data-amount="{{ pay_str }}"
+    data-currency="INR"
+    data-order_id="{{ payment.order_id }}"
+    data-buttontext=""
+    data-name="Zacson Fitness"
+    data-description="Your description"
+    data-image=""
+    data-prefill.name="Akhil"
+    data-prefill.email="akhilsaji@gmail.com"
+    data-theme.color="#76cff5"
+        >
+
+</script>
+</html>

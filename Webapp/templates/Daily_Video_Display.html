@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+	<title>Home</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="{% static 'Equipment_Page/images/icons/favicon.png' %}"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'Equipment_Page/vendor/bootstrap/css/bootstrap.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'Equipment_Page/fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'Equipment_Page/fonts/iconic/css/material-design-iconic-font.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'Equipment_Page/fonts/linearicons-v1.0.0/icon-font.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'Equipment_Page/vendor/animate/animate.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'Equipment_Page/vendor/css-hamburgers/hamburgers.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'Equipment_Page/vendor/animsition/css/animsition.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'Equipment_Page/vendor/select2/select2.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'Equipment_Page/vendor/daterangepicker/daterangepicker.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'Equipment_Page/vendor/slick/slick.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'Equipment_Page/vendor/MagnificPopup/magnific-popup.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'Equipment_Page/vendor/perfect-scrollbar/perfect-scrollbar.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'Equipment_Page/css/util.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'Equipment_Page/css/main.css' %}">
+<!--===============================================================================================-->
+</head>
+<body class="animsition">
+
+	<!-- Cart -->
+	<a href="{% url 'Courses' %}">
+		<button class="btn btn-primary success-border " style="margin-left:50px;margin-top:20px;color:black;width:110px;">Back</button>
+	</a>
+
+	<!-- Title page -->
+	<section class="bg-img1 txt-center p-lr-15 p-tb-92">
+		<h2 class="ltext-105 cl0 txt-center" style="color:black"  >
+			Workout
+		</h2>
+	</section>
+	<!-- Content page -->
+	<section class="bg0 p-t-62 p-b-60" style="margin-top:-100px;">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8 col-lg-9 p-b-80">
+					<div class="p-r-45 p-r-0-lg">
+						<!-- item blog -->
+						<div class="p-b-63" style="border sold 20px;">
+								<video autoplay id="myVideo" controls style="border sold 2px;">
+                                  <source src="{{w_data.Video.url}}" type="video/mp4">
+                              </video>
+							<div class="p-t-32" style="margin-top:0px;">
+								<h4 class="p-b-15">
+									<button id="pause-btn" class="btn btn-info">Pause</button>
+									<h1 class="ltext-108 cl2 hov-cl1 trans-04">
+											{{w_data.Workout_Name}} ( {{w_data.Sets}} )
+									</h1>
+								</h4><br>
+								<p class="stext-117 cl6">
+									{{w_data.Description}}
+								</p>
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+				<div class="col-md-4 col-lg-3 p-b-80">
+					<div class="side-menu">
+						<div class="p-t-55">
+							<h4 class="mtext-112 cl2 p-b-33">
+								Workout should do with
+							</h4>
+
+							<ul>
+								<li class="bor18">
+									<a href="#" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
+										Proper Form
+									</a>
+								</li>
+
+								<li class="bor18">
+									<a href="#" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
+										Consistently
+									</a>
+								</li>
+
+								<li class="bor18">
+									<a href="#" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
+										Intensively
+									</a>
+								</li>
+
+								<li class="bor18">
+									<a href="#" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
+										Proper Warm-up and Cool-down
+									</a>
+								</li>
+
+								<li class="bor18">
+									<a href="#" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
+										 Progressive Overload
+									</a>
+								</li>
+							</ul>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+<!--===============================================================================================-->
+	<script src="{% static 'Equipment_Page/vendor/jquery/jquery-3.2.1.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'Equipment_Page/vendor/animsition/js/animsition.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'Equipment_Page/vendor/bootstrap/js/popper.js' %}"></script>
+	<script src="{% static 'Equipment_Page/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'Equipment_Page/vendor/select2/select2.min.js' %}"></script>
+	<script>
+		$(".js-select2").each(function(){
+			$(this).select2({
+				minimumResultsForSearch: 20,
+				dropdownParent: $(this).next('.dropDownSelect2')
+			});
+		})
+	</script>
+<!--===============================================================================================-->
+	<script src="{% static 'Equipment_Page/vendor/MagnificPopup/jquery.magnific-popup.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'Equipment_Page/vendor/perfect-scrollbar/perfect-scrollbar.min.js' %}"></script>
+	<script>
+		$('.js-pscroll').each(function(){
+			$(this).css('position','relative');
+			$(this).css('overflow','hidden');
+			var ps = new PerfectScrollbar(this, {
+				wheelSpeed: 1,
+				scrollingThreshold: 1000,
+				wheelPropagation: false,
+			});
+
+			$(window).on('resize', function(){
+				ps.update();
+			})
+		});
+	</script>
+	<script>
+		const video = document.getElementById("myVideo");
+		const pauseBtn = document.getElementById("pause-btn");
+
+		pauseBtn.addEventListener("click", () => {
+		  if (video.paused) {
+			video.play();
+			pauseBtn.textContent = "Pause";
+		  } else {
+			video.pause();
+			pauseBtn.textContent = "Play";
+		  }
+		});
+
+	</script>
+<!--===============================================================================================-->
+	<script src="{% static 'Equipment_Page/js/main.js' %}"></script>
+
+</body>
+</html>

@@ -1,0 +1,115 @@
+
+<!DOCTYPE html>
+{% load static %}
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Gym Registration</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<!-- MATERIAL DESIGN ICONIC FONT -->
+		<link rel="stylesheet" href="{% static 'User_Gym_Register/fonts/material-design-iconic-font/css/material-design-iconic-font.min.css' %}">
+
+		<!-- STYLE CSS -->
+		<link rel="stylesheet" href="{% static 'User_Gym_Register/css/style.css' %}">
+	</head>
+
+	<body>
+
+		<div class="wrapper" >
+			<div class="inner" >
+				<div class="image-holder" style="padding-top:-100px;">
+					<img src="{% static 'User_Gym_Register/images/registration-form-6.jpg' %}" alt="">
+				</div>
+				<form action="{% url 'save_user_gym_register' %}" method="post" enctype="multipart/form-data">
+					{% csrf_token %}
+					<h3>Gym Registration</h3>
+
+					<div class="form-row">
+						<input type="text" name="name" class="form-control" placeholder="Full Name" required>
+						<input type="email" name="email" class="form-control" placeholder="Email" required>
+					</div>
+					<div class="form-row" >
+						<input type="text" name="address" class="form-control" placeholder="Address,city,Country" required>
+					</div>
+					<label style="color:#878787;">Profile</label>
+					<div class="form-row" style="padding-top:20px">
+
+						<input type="file" name="profile_image" class="form-control"  required>
+						<input type="tel" pattern="[0-9]{10}" name="phone" class="form-control" placeholder="Phone" required>
+					</div>
+					<label style="color:#878787;">Joining Date</label><br><br>
+					<div class="form-holder form-row">
+						<input type="date" class="form-control" name="joining_date" id="joining_date" placeholder="Join Date"  required>
+						<select name="select_trainer"  class="form-control"  required>
+								<option value="" disabled selected>Choose Your Trainer</option>
+								{% for t in trainer %}
+								<option >{{t.name}}</option>
+								{% endfor %}
+							</select>
+							<i class="zmdi zmdi-chevron-down"></i>
+					</div>
+					<div class="form-holder form-row">
+
+						<select name="select_course" class="form-control" required>
+							<option>Choose Your Course</option>
+							{% for i in cat_data %}
+							<option>{{i.Workout_Cat}}</option>
+							{% endfor %}
+							{% for j in cat2 %}
+							<option>{{j.Daily_Workout_Cat}}</option>
+							{% endfor %}
+						</select>
+						<input type="text" name="selected_plan" value="{{plan.Plan_Name}} / Rs. {{plan.Plan_Price}}" class="form-control" readonly>
+					</div>
+					<input type="hidden" class="form-control" name="payment_plan" value="{{plan.Plan_Price}}" readonly>
+
+					<label style="color:#878787;">Gender</label><br><br>
+					<div class="form-row" style="justify-content: space-evenly;width:300px;">
+
+						<label style="color:#878787;">Male</label >
+						<input type="radio" id="male" name="gender" value="Male" >
+						<label style="color:#878787;">Female</label>
+						<input type="radio" id="female" name="gender" value="Female">
+						<label style="color:#878787;">Other</label>
+						<input type="radio" id="other" name="gender" value="Other">
+					</div>
+
+					<div class="form-row">
+						<input type="text" name="height" class="form-control" placeholder="Height(kg)" required>
+						<input type="text" name="weight" class="form-control" placeholder="Weight(cm)" required>
+					</div>
+					<label style="color:#878787;">Do you have any medical conditions? (Yes/No) if yes specify</label><br><br>
+					<textarea name="medical" id="" placeholder="Message" class="form-control" style="height: 130px;" required></textarea>
+					<br><br>
+					<label style="color:#878787;">Emergency Contact Information</label><br><br>
+					<div class="form-row">
+						<input type="text" name="em_name" class="form-control" placeholder="Name" required>
+						<input type="tel" name="em_phone" pattern="[0-9]{10}" class="form-control" placeholder="Phone" required><br>
+						<input type="hidden" name="user_session" class="form-control" value="{{request.session.Username}}">
+					</div>
+					<button style="background-color:red" type="submit">Register Now
+						<i class="zmdi zmdi-long-arrow-right" ></i>
+					</button>
+
+				</form>
+
+			</div>
+		</div>
+
+		<script src="{% static 'User_Gym_Register/js/jquery-3.3.1.min.js' %}"></script>
+		<script src="{% static 'User_Gym_Register/js/main.js' %}"></script>
+	</body>
+<style></style>
+<script>
+  const today = new Date();
+  const joiningDateInput = document.getElementById("joining_date");
+  joiningDateInput.min = today.toISOString().split("T")[0]; // Set min to today's date
+
+  // Update the min attribute every day
+  setInterval(() => {
+    today.setDate(today.getDate() + 1); // Increment today by 1 day
+    joiningDateInput.min = today.toISOString().split("T")[0]; // Update min to new today
+  }, 24 * 60 * 60 * 1000); // Update every 24 hours
+</script>
+</html>

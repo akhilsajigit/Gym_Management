@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Trainer Profile </title>
+</head>
+<body>
+<div class="profile-container">
+  <div class="profile-card">
+    <div class="profile-image">
+      <img src="{{requests.image.url}}" width="250px" height="250px"  alt="profile image">
+    </div>
+    <div class="profile-info" >
+      <h2>Name : {{requests.name}}</h2><br><br>
+      <p> Email: {{requests.email}} <br><br><br>   Phone : {{requests.phone}} <br><br><br>
+          Course : {{requests.course}} <br><br><br> Experience : {{requests.experience}} <br><br><br> Certifications : {{requests.certification}} <br><br><br></p>
+
+    </div>
+      <div class="btn_div">
+          <a href="{% url 'approve_trainer_request' request_id=requests.id %}" >
+              <button class="btn btn-primary">Approve</button>
+          </a>
+          <a href="{% url 'delete_trainer_request' request_id=requests.id %}">
+              <button class="btn btn-danger">Delete</button>
+          </a>
+      </div>
+  </div>
+</div>
+
+</body>
+<style>
+    .profile-info p {
+       margin-left:370px;
+       margin-left:300px;
+       font-size: 18px;
+       color: #332c2c;
+       padding-top: 10px;
+    }
+    .profile-info h2 {
+        margin-top:-160px;
+        margin-left:300px;
+        font-weight: bold;
+    }
+    .profile-container {
+        width:1060px;
+        height:800px;
+        perspective: 100px;
+        margin-top:70px;
+        margin-left:300px;
+    }
+    .btn_div{
+    margin-left:400px;
+    }
+    .btn_div button + button {
+        margin-left: 20px;
+    }
+    .profile-card {
+        height:600px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    }
+
+    .profile-image {
+        width:200px;
+        height:200px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin-left:20px;
+        transform: rotateY(0deg);
+        transition: transform 1s;
+    }
+    .profile-image:hover {
+        transform: rotateY(180deg);
+    }
+
+
+    .profile-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .profile-info {
+        padding: 20px;
+    }
+
+
+</style>
+<script>
+    const profileImage = document.querySelector('.profile-image');
+    profileImage.addEventListener('mouseover', () => {
+        profileImage.classList.add('animated');
+    });
+
+    profileImage.addEventListener('mouseout', () => {
+        profileImage.classList.remove('animated');
+    });
+
+</script>
+</html>
+{% endblock %}

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Sub-Categories</title>
+</head>
+<body>
+<div class="col-10 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Add Sub-Categories</h4>
+                  <p class="card-description">
+
+                  </p>
+                  <form class="forms-sample" method="post" action="{% url 'save_sub_categories' %}" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-group">
+                      <label for="exampleSelectGender">Select Category </label>
+                        <select class="form-control" name="select_cat" id="exampleSelectGender" >
+                          <option>--Select--</option>
+                          {% for i in c_data %}
+                          <option>{{i.Category_Name}}</option>
+                          {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputName1">Sub-Category Name</label>
+                      <input type="text" name="sub_cat_name" class="form-control" id="exampleInputName1" placeholder="Name">
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleTextarea1">Sub-Categories Description</label>
+                      <textarea class="form-control" name="sub_cat_descript" id="exampleTextarea1" rows="6"></textarea>
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputCity1">Sub-Categories Image </label>
+                      <input type="file" name="sub_cat_img" class="form-control" id="">
+                    </div>
+                    <button type="submit" class="btn btn-primary mr-2">Save</button>
+                    <button class="btn btn-light">Cancel</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+{% if messages %}
+{% for i in messages %}
+{% if i.tags == 'warning' %}
+<script>
+    swal('{{i}}', '','warning')
+</script>
+{% elif i.tags == 'error' %}
+<script>
+     swal('{{i}}', '','error')
+</script>
+{% elif i.tags == 'info' %}
+<script>
+     swal('{{i}}', '','info')
+</script>
+{% else %}
+<script>
+         swal('{{i}}', '','success')
+</script>
+{% endif %}
+{% endfor %}
+{% endif %}
+</body>
+</html>
+{% endblock %}

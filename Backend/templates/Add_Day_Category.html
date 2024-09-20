@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="col-10 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Add Day Category</h4>
+                  <p class="card-description">
+
+                  </p>
+                  <form class="forms-sample" method="post" action="{% url 'save_day_category' %}" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-group">
+                      <label for="exampleSelectGender">Select Category </label>
+                        <select class="form-control" name="select_cat" id="exampleSelectGender" >
+                          <option>--Select--</option>
+                          {% for i in cat %}
+                          <option>{{i.Daily_Workout_Cat}}</option>
+                          {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputName1">Day Number</label>
+                      <input type="text" name="day_name" class="form-control" id="exampleInputName1" placeholder="Day-Number">
+                    </div>
+                    <button type="submit" class="btn btn-primary mr-2">Save</button>
+                    <button class="btn btn-light">Cancel</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Trainer Request Page </title>
+</head>
+<body>
+<div class="col-lg-8 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">View Trainer Requests </h4>
+                  <p class="card-description">
+                    >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+                  </p>
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>id</th>
+                          <th>Name</th>
+                          <th>Course</th>
+                          <th>Profile </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      {% for i in T_data %}
+                        <tr>
+                          <td>{{i.id}}</td>
+                          <td>{{i.name}}</td>
+                          <td>Add_Course</td>
+                          <td>
+                            <a href="{% url 'admin_trainer_request_view' t_id=i.id %}" >
+                              <button class="btn btn-outline-primary">View Profile</button>
+                            </a>
+                          </td>
+                        </tr>
+                      {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="col-10 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Add Workouts</h4>
+                  <p class="card-description">
+
+                  </p>
+                  <form class="forms-sample" method="post" action="{% url 'update_single_workouts' s_id=data.id %}" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-group">
+                      <label for="exampleSelectGender">Select Category </label>
+                        <select class="form-control" name="edit_select_cat" id="exampleSelectGender" >
+                          {% for i in cat %}
+                          <option>{{data.Cat_Name}}</option>
+                          <option>{{i.Workout_Cat}}</option>
+                          {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputName1">Workout Name</label>
+                      <input type="text" name="edit_workout_name" class="form-control" id="exampleInputName1" value="{{data.Workout_Name}}">
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputName1">Sets</label>
+                      <input type="text" name="edit_workout_sets" value="{{data.Sets}}" class="form-control"  placeholder="Sets">
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleTextarea1">Workout Description</label>
+                      <textarea name="edit_workout_description" class="form-control" id="exampleTextarea1" rows="6">{{data.Description}}</textarea>
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputName1">Workout Image</label><br><br>
+                      <img src="{{data.Workout_Image.url}}" width="100px" height="100px" ><br><br>
+                      <input type="file" name="edit_workout_image" class="form-control" >
+                    </div>
+                    <div class="form-group">
+                      <label for="">Workout Video </label><br>
+                      <video width="200" controls style="border sold 2px;">
+                                  <source src="{{data.Video.url}}" type="video/mp4">
+                              </video><br><br>
+                      <input type="file" name="edit_workout_video" class="form-control" id="">
+                    </div>
+                    <button type="submit" class="btn btn-primary mr-2">Save</button>
+                    <button class="btn btn-light">Cancel</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+</body>
+</html>
+{% endblock %}
