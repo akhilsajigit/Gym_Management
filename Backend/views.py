@@ -217,6 +217,7 @@ def view_trainer_request(request):
 
 def admin_trainer_request_view(request, t_id):
     requests = TrainerRequest.objects.get(id=t_id)
+
     return render(request, "Admin_trainer_requests.html", {'requests': requests})
 
 

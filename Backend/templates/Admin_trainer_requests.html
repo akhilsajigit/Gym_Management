@@ -19,11 +19,16 @@
 
     </div>
       <div class="btn_div">
+          {% if requests.approved %}
+<!--            <button class="btn btn-primary">Approved</button>-->
+          {% else %}
           <a href="{% url 'approve_trainer_request' request_id=requests.id %}" >
               <button class="btn btn-primary">Approve</button>
           </a>
+
+          {% endif %}
           <a href="{% url 'delete_trainer_request' request_id=requests.id %}">
-              <button class="btn btn-danger">Delete</button>
+              <button class="btn btn-danger" style="margin-left:20px;">Delete</button>
           </a>
       </div>
   </div>

@@ -3,7 +3,7 @@ from Webapp import views
 
 urlpatterns = [
     # Main Template
-    path("Home/", views.home_page, name="Home"),
+    path("", views.home_page, name="Home"),
     path("About/", views.about_page, name="About"),
     path("Blog/", views.blog_page, name="Blog"),
     path("Courses/", views.courses_page, name="Courses"),
