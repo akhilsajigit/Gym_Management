@@ -535,6 +535,7 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
   width: auto;
   max-width: 100%;
   position: relative;
+
 }
 
 /*---------------------------------------------*/
@@ -637,10 +638,6 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 }
 
 /*---------------------------------------------*/
-.main-menu > li.active-menu > a {
-  color: #6c7ae0;
-}
-
 
 
 /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -3104,7 +3101,9 @@ input.num-product::-webkit-inner-spin-button {
 .hov-btn3:hover i {
   color: #fff;
 }
-
+#pause-btn{
+  margin:0px 20px;
+}
 /*---------------------------------------------*/
 .hov-tag1:hover {
   color: #717fe0;
@@ -3133,6 +3132,7 @@ input.num-product::-webkit-inner-spin-button {
   -moz-transition: all 0.3s;
 }
 
+
 .hov-ovelay1:hover:after {
   opacity: 1;
 }
@@ -3158,6 +3158,13 @@ input.num-product::-webkit-inner-spin-button {
   opacity: 1;
 }
 
+
+.a-nav{
+   color:black;
+}
+.active-menu{
+   color: #6c7ae0;
+}
 
 
 
@@ -3253,7 +3260,6 @@ input.num-product::-webkit-inner-spin-button {
 
 }
 
-
 /*//////////////////////////////////////////////////////////////////
 [ SM ]*/
 @media (max-width: 575px) {
@@ -3279,7 +3285,7 @@ input.num-product::-webkit-inner-spin-button {
   .respon1 {
     font-size: 40px;
   }
-  
+
   /*---------------------------------------------*/
   .respon2 {
     font-size: 20px;

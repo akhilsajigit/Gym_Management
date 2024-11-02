@@ -6,10 +6,11 @@
     <title>Payment Page</title>
 </head>
 <body>
-<a href="{% url 'Home' %}" >
+<a href="{% url 'Equipment_Page' %}" >
     <button class="btn btn-primary">Home</button>
 </a>
 <form action="#" method="post">
+    {% csrf_token %}
     <div class="outer-div">
     <h4>Proceed to Payment</h4>
     <h5>Payer : {{customer.Customer_Name}}</h5>

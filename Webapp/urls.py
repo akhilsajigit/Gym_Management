@@ -20,6 +20,7 @@ urlpatterns = [
     path("single_product_page/<int:p_id>", views.single_product_page, name="single_product_page"),
     path("Each_Sub_Category/<sub_cat_name>", views.sub_filtered_page, name="Each_Sub_Category"),
     path("product_filtered/<pro_name>", views.product_filtered_page, name="product_filtered"),
+    path("product_search/", views.product_search, name="product_search"),
     path("Cart/", views.cart_page, name="Cart"),
     path("save_cart_data/<int:p_id>", views.save_cart_data, name="save_cart_data"),
     path("delete_cart_data/<int:cat_id>", views.delete_cart_data, name="delete_cart_data"),

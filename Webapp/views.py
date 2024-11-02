@@ -84,70 +84,33 @@ def single_product_page(request, p_id):
     return render(request, "Single_Product.html", {'c_data': c_data, 'p_data': p_data})
 
 
-# User Authentication -----
-def user_login_page(request):
-    return render(request, "UserLogin.html")
+def product_search(request):
+    product = ProductDB.objects.all()
 
-
-def user_register(request):
-    return render(request, "User_Register.html")
-
-
-def save_user_register(request):
+    # Check if the form was submitted
     if request.method == "POST":
-        un = request.POST.get('user_name')
-        ue = request.POST.get('user_email')
-        up = request.POST.get('user_pass')
-        up2 = request.POST.get('user_pass2')
-        pass_size = len(up)
-        obj = RegisterDB(User_Name=un, User_Email=ue, User_Password=up)
-        if RegisterDB.objects.filter(User_Name=un):
-            messages.warning(request, "Username already Exists")
-            return redirect(user_register)
-        elif RegisterDB.objects.filter(User_Email=ue):
-            messages.warning(request, "Email already Exists")
-            return redirect(user_register)
-        elif up != up2:
-            messages.warning(request, "Passwords are not equal")
-            return redirect(user_register)
-        elif pass_size < 8:
-            messages.warning(request, "Passwords not strong")
-            return redirect(user_register)
-        else:
-            obj.save()
-            messages.success(request, "User Registered Successfully")
-        return redirect(user_login_page)
+        searched_term = request.POST.get('searched_item')
 
+        if not searched_term:
+            messages.warning(request, "Please enter to search! ")
+            return render(request, "Equip_Index.html")
 
-def user_login_session(request):
-    if request.method == "POST":
-        usr = request.POST.get('username')
-        pwd = request.POST.get('password')
-        if RegisterDB.objects.filter(User_Name=usr).exists():
-            if RegisterDB.objects.filter(User_Name=usr, User_Password=pwd).exists():
-                request.session['Username'] = usr
-                request.session['Password'] = pwd
-                sec = RegisterDB.objects.get(User_Name=request.session['Username'])
-                messages.success(request, f"Welcome {sec.User_Name}")
-                return redirect(home_page)
-            else:
-                messages.warning(request, "Incorrect Password")
-                return redirect(user_login_page)
-        else:
-            messages.warning(request, "User not exists")
-            return redirect(user_login_page)
-    else:
-        return redirect(user_login_page)
+        searched_product = ProductDB.objects.filter(Product_Name__icontains=searched_term)
+        c_data = CategoryDB.objects.all()
 
+        context = {
+            'searched_product': searched_product,
+            'c_data': c_data,
+            'searched_term':searched_term
+        }
 
-def user_logout(request):
-    del request.session['Username']
-    del request.session['Password']
-    messages.success(request, "Logout Successfully")
-    return redirect(home_page)
+        # if no results
+        if not searched_product:
+            messages.error(request, "Sorry..! Your search not exist")
+            return render(request, "Search_Page.html")
 
+        return render(request, "Search_Page.html", context)
 
-# ------------------------------------------------------------------------------------------------------------------------
 
 def cart_page(request):
     c_data = CategoryDB.objects.all()
@@ -230,6 +193,69 @@ def shop_payment_page(request):
         client = razorpay.Client(auth=('rzp_test_PMmGnroCxOlaJ0', 'rD9yidEziI0RjKCkl2HUPe7u'))
         payment = client.order.create({'amount': amount, 'currency': order_currency, 'payment_capture': '1'})
     return render(request, "Shop_Payment.html", {'customer': customer, 'pay_str': pay_str})
+
+
+# User Authentication -----
+def user_login_page(request):
+    return render(request, "UserLogin.html")
+
+
+def user_register(request):
+    return render(request, "User_Register.html")
+
+
+def save_user_register(request):
+    if request.method == "POST":
+        un = request.POST.get('user_name')
+        ue = request.POST.get('user_email')
+        up = request.POST.get('user_pass')
+        up2 = request.POST.get('user_pass2')
+        pass_size = len(up)
+        obj = RegisterDB(User_Name=un, User_Email=ue, User_Password=up)
+        if RegisterDB.objects.filter(User_Name=un):
+            messages.warning(request, "Username already Exists")
+            return redirect(user_register)
+        elif RegisterDB.objects.filter(User_Email=ue):
+            messages.warning(request, "Email already Exists")
+            return redirect(user_register)
+        elif up != up2:
+            messages.warning(request, "Passwords are not equal")
+            return redirect(user_register)
+        elif pass_size < 8:
+            messages.warning(request, "Passwords not strong")
+            return redirect(user_register)
+        else:
+            obj.save()
+            messages.success(request, "User Registered Successfully")
+        return redirect(user_login_page)
+
+
+def user_login_session(request):
+    if request.method == "POST":
+        usr = request.POST.get('username')
+        pwd = request.POST.get('password')
+        if RegisterDB.objects.filter(User_Name=usr).exists():
+            if RegisterDB.objects.filter(User_Name=usr, User_Password=pwd).exists():
+                request.session['Username'] = usr
+                request.session['Password'] = pwd
+                sec = RegisterDB.objects.get(User_Name=request.session['Username'])
+                messages.success(request, f"Welcome {sec.User_Name}")
+                return redirect(home_page)
+            else:
+                messages.warning(request, "Incorrect Password")
+                return redirect(user_login_page)
+        else:
+            messages.warning(request, "User not exists")
+            return redirect(user_login_page)
+    else:
+        return redirect(user_login_page)
+
+
+def user_logout(request):
+    del request.session['Username']
+    del request.session['Password']
+    messages.success(request, "Logout Successfully")
+    return redirect(home_page)
 
 
 # _______________________________________________________________________________________________________________________

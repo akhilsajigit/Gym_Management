@@ -483,6 +483,6 @@ def view_feedback_page(request):
 
 
 def delete_feedback(request, f_id):
-    x = ContactDB.object.get(id=f_id)
+    x = ContactDB.objects.get(id=f_id)
     x.delete()
     return redirect(view_feedback_page)

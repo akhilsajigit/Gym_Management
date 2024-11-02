@@ -21,6 +21,7 @@
                           <th>id</th>
                           <th>Category</th>
                           <th>Sub-Category</th>
+                          <th>Product</th>
                           <th>About</th>
                           <th>Price</th>
                           <th>Description</th>
@@ -30,6 +31,7 @@
                       <tbody>
                       {% for i in data %}
                         <tr>
+                          <td>{{i.id}}</td>
                           <td>{{i.Cat_Select}}</td>
                           <td>{{i.Sub_Cat_Select}}</td>
                           <td>{{i.Product_Name}}</td>
