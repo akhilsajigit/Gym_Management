@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 {% load static %}
 <head>
-	<title>Home</title>
+	<title>Search</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->
@@ -324,46 +324,53 @@
 
 			</div>
 			<div>
-				<h3>
-					Result for <b><span style="color: #6c7ae0;">{{searched_term}}</span></b>
-				</h3>
+				{% if searched_product %}
+					<h3>
+						Result for <b><span style="color: #6c7ae0;">{{searched_term}}</span></b>
+					</h3>
+				{% else %}
+					<h3>
+						Search item <b><span style="color: #6c7ae0;">not found</span></b>
+					</h3>
+				{% endif %}
 			</div>
 			<div class="row isotope-grid">
 				{% if searched_product %}
-				{% for j in searched_product %}
-				<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
-					<!-- Block2 -->
-					<div class="block2">
-						<div class="block2-pic hov-img0">
-							<img src="{{j.Product_Image.url}}" alt="IMG-PRODUCT">
-                            <a href="{% url 'single_product_page' p_id=j.id  %}" >
-								<button class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 ">
-                                    View product
-                                </button>
-							</a>
-						</div>
-
-						<div class="block2-txt flex-w flex-t p-t-14">
-							<div class="block2-txt-child1 flex-col-l ">
-								<a href="#" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-									{{j.Product_Name}}
+					{% for j in searched_product %}
+					<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
+						<!-- Block2 -->
+						<div class="block2">
+							<div class="block2-pic hov-img0">
+								<img src="{{j.Product_Image.url}}" alt="IMG-PRODUCT">
+								<a href="{% url 'single_product_page' p_id=j.id  %}" >
+									<button class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 ">
+										View product
+									</button>
 								</a>
-
-								<span class="stext-105 cl3">
-
-								</span>
 							</div>
 
-							<div class="block2-txt-child2 flex-r p-t-3">
-								<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-									<img class="icon-heart1 dis-block trans-04" src="{% static 'Equipment_Page/images/icons/icon-heart-01.png' %}" alt="ICON">
-									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="{% static 'Equipment_Page/images/icons/icon-heart-02.png' %}" alt="ICON">
-								</a>
+							<div class="block2-txt flex-w flex-t p-t-14">
+								<div class="block2-txt-child1 flex-col-l ">
+									<a href="#" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+										{{j.Product_Name}}
+									</a>
+
+									<span class="stext-105 cl3">
+
+									</span>
+								</div>
+
+								<div class="block2-txt-child2 flex-r p-t-3">
+									<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
+										<img class="icon-heart1 dis-block trans-04" src="{% static 'Equipment_Page/images/icons/icon-heart-01.png' %}" alt="ICON">
+										<img class="icon-heart2 dis-block trans-04 ab-t-l" src="{% static 'Equipment_Page/images/icons/icon-heart-02.png' %}" alt="ICON">
+									</a>
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-				{% endfor %}
+					{% endfor %}
+				{% endif %}
 
 			</div>
 
@@ -396,13 +403,13 @@
 
 						<li class="p-b-10">
 							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-								Shoes
+								Gym materials
 							</a>
 						</li>
 
 						<li class="p-b-10">
 							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-								Watches
+								Proteins
 							</a>
 						</li>
 					</ul>
@@ -508,9 +515,7 @@
 				</div>
 
 				<p class="stext-107 cl6 txt-center">
-					<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved |Made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a> &amp; distributed by <a href="https://themewagon.com" target="_blank">ThemeWagon</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+
 
 				</p>
 			</div>
@@ -628,5 +633,30 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 <!--===============================================================================================-->
 	<script src="{% static 'Equipment_Page/js/main.js' %}"></script>
 
+<!--===============================================================================================-->
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	{% if messages %}
+	{% for i in messages %}
+	{% if i.tags == 'warning' %}
+	<script>
+		swal('{{i}}', '','warning')
+	</script>
+	{% elif i.tags == 'error' %}
+	<script>
+		 swal('{{i}}', '','error')
+	</script>
+	{% elif i.tags == 'info' %}
+	<script>
+		 swal('{{i}}', '','info')
+	</script>
+	{% else %}
+	<script>
+			 swal('{{i}}', '','success')
+	</script>
+	{% endif %}
+	{% endfor %}
+	{% endif %}
+
+<!--===============================================================================================-->
 </body>
 </html>

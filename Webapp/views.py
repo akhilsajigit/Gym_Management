@@ -93,7 +93,7 @@ def product_search(request):
 
         if not searched_term:
             messages.warning(request, "Please enter to search! ")
-            return render(request, "Equip_Index.html")
+            return redirect(equip_index_page)
 
         searched_product = ProductDB.objects.filter(Product_Name__icontains=searched_term)
         c_data = CategoryDB.objects.all()
@@ -358,8 +358,17 @@ def save_user_gym_register(request):
                                Emergency_Name=en, Emergency_Phone=ep, User_Session=us,
                                Profile_Image=p_img)
             obj.save()
-            subject = 'Zacson Gym'
-            message = 'This is from Zacson Gym, Welcome to our team and your registration completed with payments'
+            subject = 'Zacson Fitiness'
+            message = """
+            Welcome to Zacson Fitness
+            
+            We're excited to confirm that your registration and payment have been successfully processed. 
+            You're now part of our fitness community! 
+            If you have any questions, please don't hesitate to reach out.
+            
+            Best regards,
+            Zacson Team
+            """
             send_mail(subject,
                       message, settings.EMAIL_HOST_USER, [em], fail_silently=False)
             messages.success(request, 'Success!')

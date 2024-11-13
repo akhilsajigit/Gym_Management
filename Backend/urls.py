@@ -80,6 +80,7 @@ urlpatterns = [
     path("add_membership_plan_page/", views.add_membership_plan_page, name="add_membership_plan_page"),
     path("save_membership_plan/", views.save_membership_plan, name="save_membership_plan"),
     path("view_membership_plan_page/", views.view_membership_plan_page, name="view_membership_plan_page"),
+    path("delete_membership_plan/<int:m_id>", views.delete_membership_plan, name="delete_membership_plan"),
 
     # Feedbacks
     path("view_feedback_page/", views.view_feedback_page, name="view_feedback_page"),

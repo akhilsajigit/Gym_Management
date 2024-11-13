@@ -34,6 +34,8 @@
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{% static 'Equipment_Page/css/util.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'Equipment_Page/css/main.css' %}">
+
+	<link rel="stylesheet" type="text/css" href="{% static 'Equipment_Page/css/style.css' %}">
 <!--===============================================================================================-->
 </head>
 <body class="animsition">
@@ -56,10 +58,10 @@
 				<div class="col-md-8 col-lg-9 p-b-80">
 					<div class="p-r-45 p-r-0-lg">
 						<!-- item blog -->
-						<div class="p-b-63" style="border sold 20px;">
-							  <video autoplay id="myVideo" controls style="border sold 2px;">
-                                  <source src="{{w_data.Video.url}}" type="video/mp4">
-                              </video>
+						<div class="p-b-63" style=" margin-top: -30px">
+							  <video autoplay id="myVideo" controls width="100%" >
+                  <source src="{{w_data.Video.url}}" type="video/mp4">
+                </video>
 							  <button id="pause-btn" class="btn btn-info pause-btn" >Pause</button>
 
 							<div class="p-t-32" >

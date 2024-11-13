@@ -473,6 +473,16 @@ def view_membership_plan_page(request):
     data = Membership_PlansDB.objects.all()
     return render(request, "View_Membership_Plan.html", {'data': data})
 
+def edit_membership_plan(request, m_id):
+    return redirect(view_membership_plan_page)
+
+
+
+def delete_membership_plan(request, m_id):
+    
+    x = Membership_PlansDB.objects.get(id=m_id)
+    x.delete()
+    return redirect(view_membership_plan_page)
 
 # Feedback Session
 # ---------------------------------

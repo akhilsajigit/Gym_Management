@@ -24,6 +24,11 @@
     <link rel="stylesheet" href="{% static 'assets/css/slick.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/nice-select.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+
+    <!--==================== UNICONS ====================-->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+
+
 </head>
 <body class="black-bg">
     <!-- ? Preloader Start -->
@@ -184,18 +189,16 @@
                             <div style="margin-top:-450px;margin-right:600px;">
                                 <h1>Select Your Plan</h1><br><br>
 
-                                <span style="flex;">
+                                <span >
                                     {% for m in M_data %}
-                                    <a href="{% url 'user_gym_register_page' m_id=m.id %}">
+                                    <a href="{% url 'user_gym_register_page' m_id=m.id %}" >
                                         <button  class="btn ">{{m.Plan_Name}}</button>
                                     </a>
-                                    &nbsp;
-                                    &nbsp;
                                     {% endfor %}
                                 </span>
 
                         </div>
-                            <button id="register-close-button" class="btn close-button" style="width:200px;height:50px;margin-right:150px;margin-top:190px;">Close</button>
+                            <button id="register-close-button" class="btn close-button" style="width:200px;height:50px;margin:135px 150px; padding: 20px;">Close</button>
 
 
                        <!-- Mobile Menu -->
