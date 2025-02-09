@@ -101,7 +101,7 @@ def product_search(request):
         context = {
             'searched_product': searched_product,
             'c_data': c_data,
-            'searched_term':searched_term
+            'searched_term': searched_term
         }
 
         # if no results
